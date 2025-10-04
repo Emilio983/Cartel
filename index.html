@@ -1,1 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bach News - Tu Portal Estudiantil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #f0f4f8; /* Un gris azulado muy claro para el fondo exterior */
+            padding: 1rem;
+        }
+        
+        .poster {
+            width: 95vw;
+            max-width: 900px; /* Ancho máximo para el formato cuadrado */
+            height: auto;
+            aspect-ratio: 1 / 1; /* Proporción cuadrada */
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 25%, #3b82f6 50%, #1e40af 75%, #0f172a 100%);
+            background-size: 300% 300%;
+            animation: gradient-flow 12s ease infinite;
+            overflow: hidden; /* Oculta el desbordamiento */
+            border-radius: 2rem; /* Bordes más redondeados */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .poster::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(96, 165, 250, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* --- Animaciones --- */
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes subtle-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0); }
+        }
+
+        @keyframes typing-effect {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #60a5fa; }
+        }
+
+        @keyframes logo-pulse {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                filter: brightness(1);
+            }
+            50% { 
+                transform: scale(1.05) rotate(2deg);
+                filter: brightness(1.1);
+            }
+        }
+
+        .logo-pulse {
+            animation: logo-pulse 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.5));
+        }
+        
+        /* --- Clases de utilidad para animaciones --- */
+        .animate-fade-in-up {
+            animation: fade-in-up 1s ease-out forwards;
+            opacity: 0; /* Inicia invisible */
+        }
+
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-800 { animation-delay: 0.8s; }
+        .delay-1000 { animation-delay: 1s; }
+        .delay-1200 { animation-delay: 1.2s; }
+        .delay-1400 { animation-delay: 1.4s; }
+
+        /* --- Estilos Adicionales --- */
+        .text-glow {
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 0 0 20px rgba(96, 165, 250, 0.5);
+        }
+
+        .card-glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-glass:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(96, 165, 250, 0.2);
+        }
+        
+        .typing-container .slogan {
+            overflow: hidden;
+            border-right: .15em solid #60a5fa;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .05em;
+            animation: typing-effect 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        /* --- Elementos decorativos --- */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59,130,246,0.3) 0%, rgba(59,130,246,0) 70%);
+            animation: subtle-pulse 5s infinite ease-in-out;
+        }
+
+        /* --- Mockup de Celular (tamaño ajustado) --- */
+        .phone-mockup {
+            position: relative;
+            width: 280px; /* Ancho del teléfono Reducido */
+            height: 575px; /* Alto del teléfono Reducido */
+            background: #111;
+            border-radius: 36px; /* Ajustado */
+            padding: 10px; /* Ajustado */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 2px 2px #555, inset 0 -2px 2px #000;
+            flex-shrink: 0;
+            transform: scale(0.9); /* Escala para que quepa mejor */
+        }
+        @media (min-width: 768px) {
+            .phone-mockup {
+                transform: scale(1); /* Tamaño normal en pantallas más grandes */
+            }
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 26px; /* Ajustado */
+            overflow: hidden;
+            position: relative;
+        }
+        .phone-screen iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #fff; /* Color de fondo si el iframe no carga */
+            overflow: hidden;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+        .phone-screen iframe::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+        .phone-notch {
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px; /* Ajustado */
+            height: 24px; /* Ajustado */
+            background: #111;
+            border-bottom-left-radius: 14px; /* Ajustado */
+            border-bottom-right-radius: 14px; /* Ajustado */
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="poster relative flex flex-col p-6 sm:p-8">
+        <!-- Elementos decorativos de fondo -->
+        <div class="circle" style="width: 400px; height: 400px; top: -5%; left: -100px; animation-delay: 0s;"></div>
+        <div class="circle" style="width: 300px; height: 300px; bottom: -5%; right: -80px; animation-delay: 2s;"></div>
+        
+        <!-- Header -->
+        <header class="text-center pt-4 z-10">
+            <div class="flex items-center justify-center mb-4 animate-fade-in-up">
+                <img src="LogoNews.svg" alt="Bach News Logo" class="w-16 h-16 sm:w-20 sm:h-20 mr-4 logo-pulse" />
+                <h1 class="text-4xl sm:text-5xl font-black text-white text-glow">BACH NEWS</h1>
+            </div>
+            <div class="typing-container animate-fade-in-up delay-200">
+                 <p class="slogan text-md sm:text-lg text-blue-300 font-semibold">Tu conexión estudiantil digital</p>
+            </div>
+        </header>
+
+        <!-- Contenido principal (2 columnas) -->
+        <main class="flex-grow flex flex-col md:flex-row justify-center items-center mt-4 gap-4 md:gap-8 z-10">
+            
+            <!-- Columna Izquierda: Mockup del celular -->
+            <div class="phone-mockup animate-fade-in-up delay-400">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <iframe src="https://bachnews.site/" title="Vista previa de Bach News"></iframe>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Sección de Características -->
+            <section class="w-full md:w-1/2 mt-4 md:mt-0">
+                <h2 class="text-xl sm:text-2xl font-bold text-white text-center mb-4 animate-fade-in-up delay-600">Tu Centro de Mando Estudiantil:</h2>
+                <div class="grid grid-cols-1 gap-3">
+                    <!-- Feature Card -->
+                    <div class="card-glass flex items-center p-3 rounded-xl animate-fade-in-up delay-800">
+                        <div class="bg-blue-500 p-2 rounded-lg mr-3 shadow-lg flex-shrink-0"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+                        <div>
+                            <h3 class="text-md font-bold text-white leading-tight">Avisos Importantes</h3>
+                            <p class="text-blue-200 text-xs mt-1">Fechas de exámenes, eventos y más.</p>
+                        </div>
+                    </div>
+                    <!-- Feature Card -->
+                    <div class="card-glass flex items-center p-3 rounded-xl animate-fade-in-up delay-1000">
+                        <div class="bg-green-500 p-2 rounded-lg mr-3 shadow-lg flex-shrink-0"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div>
+                        <div>
+                            <h3 class="text-md font-bold text-white leading-tight">Menú de Cafetería</h3>
+                            <p class="text-blue-200 text-xs mt-1">Planifica tu almuerzo sin filas.</p>
+                        </div>
+                    </div>
+                    <!-- Feature Card -->
+                    <div class="card-glass flex items-center p-3 rounded-xl animate-fade-in-up delay-1200">
+                        <div class="bg-yellow-500 p-2 rounded-lg mr-3 shadow-lg flex-shrink-0"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 002 2h3a2 2 0 002-2V7a2 2 0 00-2-2H5z"></path></svg></div>
+                        <div>
+                            <h3 class="text-md font-bold text-white leading-tight">Boletos de Autobús</h3>
+                            <p class="text-blue-200 text-xs mt-1">Consulta rutas y asegura tu lugar.</p>
+                        </div>
+                    </div>
+                    <!-- Feature Card -->
+                    <div class="card-glass flex items-center p-3 rounded-xl animate-fade-in-up delay-1200">
+                        <div class="bg-purple-500 p-2 rounded-lg mr-3 shadow-lg flex-shrink-0"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div>
+                        <div>
+                             <h3 class="text-md font-bold text-white leading-tight">Contacto Profesores</h3>
+                             <p class="text-blue-200 text-xs mt-1">Contacta a tus maestros fácilmente.</p>
+                        </div>
+                    </div>
+                    <!-- Feature Card -->
+                    <div class="card-glass flex items-center p-3 rounded-xl animate-fade-in-up delay-1200">
+                        <div class="bg-indigo-500 p-2 rounded-lg mr-3 shadow-lg flex-shrink-0"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+                        <div>
+                            <h3 class="text-md font-bold text-white leading-tight">Horarios y Más</h3>
+                            <p class="text-blue-200 text-xs mt-1">Tus horarios y otras herramientas.</p>
+                        </div>
+                    </div>
+                     <!-- Footer / URL -->
+                    <div class="text-center pt-4 animate-fade-in-up delay-1400">
+                         <a href="https://bachnews.site" target="_blank" class="bg-gradient-to-r from-white to-blue-50 text-blue-900 px-10 py-4 rounded-full font-bold text-lg sm:text-xl tracking-wider inline-block transform hover:scale-110 transition-all duration-500 shadow-2xl hover:shadow-blue-300/50 border border-blue-100">
+                            <span class="flex items-center justify-center">
+                                <span class="mr-2">🌐</span>
+                                bachnews.site
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
+
 
